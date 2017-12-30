@@ -1,0 +1,55 @@
+TD5 Algebre relationnelle
+
+exo 1
+1/ sigma SAL<5000 (EMP)
+2/ EMPbis = rho ENOO←ENO (pi ENO,COMM (EMP)) (EMP)
+3/ pi ENOM,SAL (EMP) natual join EMP.SAL=EMPbis.COMM (ρ EMPbis (pi ENOM, COMM (EMP)))
+5/ pi PROF,ENO (sigma ENO=10 (EMP))
+6/ pi ENOM (EMP natual join (sigma Ville='New York' (pi DNO,Ville (DEPT))))
+7/ pi EMP.ENOM (sigma DNOM='Commercial' (DEPT) natual join DEPT.DIR=EMP.ENO (EMP))
+8/
+a/ DEPT
+b/ EMP
+c/ pi ENOM,SAL (EMP)
+d/ pi PROF (EMP)
+e/ pi DATEEMB (sigma PROF='Technicien' (EMP))
+f/ pi DATEEMB (sigma PROF='Technicien' (EMP))
+g/ pi EMP.ENOM, DEPT.DNOM (pi DNO, ENOM (EMP) natual join EMP.DNO=DEPT.DNO pi DNO, DNOM (DEPT))
+h/ pi EMP.ENO ((EMP) natual join DEPT.DNO=EMP.DNO sigma Ville='Boston' (DEPT))
+i/ pi EMP.ENOM (pi DIR (sigma DNO=1∧DNO=3 (DEPT)) natual join DEPT.DIR = EMP.ENO (EMP))
+j/ pi DNO (sigma PROF='Ingénieur' (EMP))
+
+
+
+
+
+exo 2
+1)
+a/ sigma capacite<350 (Avion)
+b/ pi avnum (sigma localisation='Nice' (Avion))
+c/ pi plnum,villedep (Vol)
+d/ pi plnum,plnom,plprenom,ville,salaire (Pilote)
+e/ pi plnom (sigma ville='Paris’ and salaire>3000 (Pilote))
+
+2)
+a/ pi avnum,avnom (sigma localisation='Nice' and capacite<350 (Avion))
+b/ pi volnum (sigma villedep='Nice' and villearr='Paris’ and heuredep>10 (Vol))
+c/ pi plnum (Pilote) - pi plnum (Vol)
+d/ pi volnum,villedep (sigma plnum=8 or plnum=9 (Vol))
+
+3)
+a/ pi volnum (sigma ville='Toulouse' (pi plnum,ville (Pilote)) natual join (sigma villedep='Toulouse' (Vol)))
+b/ pi volnum ((sigma localisation≠'Nice' (Avion)) natual join Vol)
+c/ pi plnom,plprenom (Pilote natual join (sigma villedep='Nice' (pi avnum,villedep (Vol)) natual join (sigma capacite>250 (Avion))))
+d/ pi plnom (sigma ville = 'Paris' (Pilote natual join (sigma villedep='Nice' (pi plnum,villedep (Vol)) natual join (sigma avnom='Airbus' (Avion)))))
+e/ pi volnum (sigma villearr='Toulouse' or villedep='Toulouse' (Vol natual join  (sigma ville='Toulouse' (pi plnum,ville (Pilote))natual join(sigma localisation='Nice' (Avion)))))
+f/ pi plnum,plnom (Pilote natual join (pi ville (sigma plnom='Dupont' (Pilote))))
+g/ pi plnum (Pilote)- pi plnum (Pilote natual join (pi plnum (sigma plnom='Durand' (Pilote))))
+h/ pi villearr (Vol natual join (pi villedep (sigma villedep='Paris' (Vol))))
+i/ pi avnum (Avion natual join (pi localisation (sigma avnum=100 (Avion))))
+
+4)
+j/ pi plnum, plnom (Pilote natual join (pi ville (sigma plnom='Dupont' (Pilote))) natual join (sigma Pilote.salaire>Pilote.salaire (sigma plnom='Dupont' (Pilote))))
+k/ pi plnum, plnom (Pilote natual join (pi villedep (Vol natual join (pi ville (Pilote)))))
+
+
